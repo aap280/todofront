@@ -1,0 +1,59 @@
+<p>This is the todo view.</p>
+<body ng-app="todofrontApp">
+  <div ng-controller="todoCtrl">
+    <div class="center">
+    <h1>To-do List</h1>
+      <p>{{items.length}}  Things to do</p>
+      <p>{{errortext}}</p>
+      <input ng-model="addMe" ng-keypress="myEnter($event, addMe)" id="toDoBox">
+      <button ng-click="addItem(addMe); loadData()" class="changeToPointer">Add</button>
+      <div ng-repeat="x in items" class="done-{{x.done}}">
+        <edit-name-directive value ="x.name" ng-keypress="myEnterEdit($event, x, x.name)"></edit-name-directive>
+        <button ng-click="updateStatus(x); loadData()" class="changeToPointer">
+          <font color = "#3366cc">Done/Not Done</font>
+        </button>
+        <button ng-click="removeItem(x); loadData()" class="changeToPointer">
+          <font color = "#E74C3C">Remove</font>
+        </buton>
+      </div>
+</body>
+
+
+<!-- what i had beforeee
+<p>This is the todo view.</p>
+<body ng-app="todofrontApp">
+  <div ng-controller="todoCtrl">
+    <div class="center">
+    <h1>To-do List</h1>
+      <p>{{items.length}}  Things to do</p>
+      <p>{{errortext}}</p>
+      <input ng-model="addMe" ng-keypress="myEnter($event, addMe)" id="toDoBox">
+      <button ng-click="addItem(addMe); loadData()" class="changeToPointer">Add</button>
+      <button id="myBtn">Edit Items</button>
+      
+      <div ng-repeat="x in items">
+        <input type="checkbox" id="{{x}}" ng-model="x.done" ng-click="updateStatus(x)">
+        <label for="{{x}}" class="done-{{x.done}}">
+        {{x.name}}
+        </label>
+        <span ng-click="removeItem(x); loadData()" class="changeToPointer">
+          <font color = "#E74C3C">[Remove]</font>
+        </span>
+      </div>
+</body>
+
+
+<div id="myModal" class="modal">
+
+  <div class="modal-content">
+  <p>{{errortext}}</p>
+  <div ng-repeat="x in items">
+  {{x.name}} 
+  <input ng-model="newName"><button ng-click="editItem(x,newName); loadData()">change</button>
+  </div>
+    <span class="close">&times;</span>
+    <p>something something dark side</p>
+  </div>
+  </div>
+
+ -->

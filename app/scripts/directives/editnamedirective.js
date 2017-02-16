@@ -29,7 +29,6 @@ angular.module('todofrontApp')
             //control display through a class on directive itself
             element.addClass('active');
 
-            //WHAT IS FOCUSING AN ELEMENT BRUNO
             // angular.element() provides a chainable array
             //reference first element
             inputElement[0].focus();

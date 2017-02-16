@@ -39,13 +39,14 @@ angular.module('todofrontApp')
       $scope.loadData();
     
   	};
-    $scope.updateStatus = function (x){
-      todoservice.updateStatus(x, function(data,err){
+    $scope.updateStatus = function (idx){
+      $scope.items[idx].done = !$scope.items[idx].done;
+      todoservice.updateStatus($scope.items[idx], function(data,err){
         if(err){
           console.log(err);
         }
       },2500);
-      $scope.loadData();
+      //$scope.loadData();
     };
 
     $scope.isUnique = function(item){
@@ -77,10 +78,12 @@ angular.module('todofrontApp')
     }
     } 
 
-    $scope.myEnterEdit = function(keyEvent, x, newName) {
+    $scope.myEnterEdit = function(keyEvent, idx, newName) {
     if (keyEvent.which === 13) {
+      console.log(idx,newName);
       $scope.errortext = "";
-      todoservice.updateItem(x, newName, function(data,err) {
+      $scope.items[idx].name = newName;
+      todoservice.updateItem($scope.items[idx], function(data,err) {
         if(err){
           console.log(err);
         }
@@ -89,20 +92,16 @@ angular.module('todofrontApp')
     }
     }
 
-    $scope.editItem = function(x, newName) {
+    $scope.editItem = function(idx, newName) {
       $scope.errortext = "";
-      if(!$scope.isUnique(newName)){
-        $scope.errortext = "Duplicate Task";
-      }
-      else{
-      todoservice.updateItem(x, newName, function(data,err) {
+      console.log(idx, newName);
+      $scope.items[idx].name = newName;
+      todoservice.updateItem($scope.items[idx], function(data,err) {
         if(err){
           console.log(err);
         }
       },2500);
-      }
       $scope.loadData();
-    };
-
+      }
 
   });

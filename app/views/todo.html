@@ -7,9 +7,9 @@
       <p>{{errortext}}</p>
       <input ng-model="addMe" ng-keypress="myEnter($event, addMe)" id="toDoBox">
       <button ng-click="addItem(addMe); loadData()" class="changeToPointer">Add</button>
-      <div ng-repeat="x in items" class="done-{{x.done}}">
-        <edit-name-directive value ="x.name" ng-keypress="myEnterEdit($event, x, x.name)"></edit-name-directive>
-        <button ng-click="updateStatus(x); loadData()" class="changeToPointer">
+      <div ng-repeat="x in items track by $index" class="done-{{x.done}}">
+        <edit-name-directive value ="x.name" ng-keypress="myEnterEdit($event, $index, x.name)"></edit-name-directive>
+        <button ng-click="updateStatus($index)" class="changeToPointer">
           <font color = "#3366cc">Done/Not Done</font>
         </button>
         <button ng-click="removeItem(x); loadData()" class="changeToPointer">

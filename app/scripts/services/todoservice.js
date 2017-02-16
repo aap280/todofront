@@ -32,32 +32,22 @@ angular.module('todofrontApp')
 				return(request.then(callback));
 			
 			},
-			//Dont know why this has weird logic
 			updateStatus:function(item,callback){
-				if(item.done == false){
-	    		var request = $http({
+				var request = $http({
 	              method: "PUT",
 	              headers: {"Content-Type":"application/json; charset=UTF-8"},
 	              url: "http://localhost:4000/todo/" + item._id,
-	              data: {"done": true}
+	              data: {"done": item.done}
 	            });
-	    	}
-	            else{
-	            var request = $http({
-	              method: "PUT",
-	              headers: {"Content-Type":"application/json; charset=UTF-8"},
-	              url: "http://localhost:4000/todo/" + item._id,
-	              data: {"done": false}
-	            });}
-	    	return(request.then(callback));
+	    		return(request.then(callback));
 
 			},
-			updateItem:function(item, newName, callback){
+			updateItem:function(item, callback){
 				var request = $http({
 					method: 'PUT',
 					headers: {"Content-Type":"application/json; charset=UTF-8"},
 					url: "http://localhost:4000/todo/" + item._id,
-	              	data: {"name": newName}
+	              	data: {"name": item.name}
 				})
 			},
 			delete: function(item,callback){
